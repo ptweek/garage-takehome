@@ -40,6 +40,9 @@ export async function POST(req: NextRequest) {
             <li><strong>Vehicle:</strong> ${listingData.listingTitle}</li>
             <li><strong>Price:</strong> $${listingData.sellingPrice.toLocaleString()}</li>
           </ul>
+           <p>We hope that you have a nice day!</p>
+        <p>Sincerely,</p>
+          <p>Garage Team</p>
           ${message ? `<p>${message}</p>` : ''}
         </div>
       `,
