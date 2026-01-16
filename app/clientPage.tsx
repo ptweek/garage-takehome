@@ -79,7 +79,6 @@ export default function ClientHome() {
       const response = await fetch(`https://garage-backend.onrender.com/listings/${productId}`)
       const newData = await response.json()
       setData(newData);
-      console.log("newData", newData)
       setIsLoading(false)
     };
 

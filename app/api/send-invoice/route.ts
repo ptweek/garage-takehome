@@ -3,7 +3,6 @@ import { Resend } from 'resend';
 import { generateInvoicePDF, type ListingData } from '../../utilities/invoiceGenerator';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-console.log("resend API key");
 
 interface SendInvoiceRequest {
     listingData: ListingData;
@@ -26,10 +25,9 @@ export async function POST(req: NextRequest) {
         const pdfBlob = await generateInvoicePDF(listingData);
         const pdfBuffer = Buffer.from(await pdfBlob.arrayBuffer());
         const filename = `invoice-${listingData.secondaryId || listingData.id}.pdf`;
-        console.log('sending email!')
 
         await resend.emails.send({
-            from: 'onboarding@resend.dev', // You'll verify a domain in Resend
+            from: 'onboarding@resend.dev',
             to: recipientEmail,
             subject: `Invoice for ${listingData.listingTitle}`,
             html: `
